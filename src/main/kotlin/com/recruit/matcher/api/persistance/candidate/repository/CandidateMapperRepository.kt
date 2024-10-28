@@ -1,20 +1,9 @@
 package com.recruit.matcher.api.persistance.candidate.repository
 
 import com.recruit.matcher.api.persistance.candidate.entity.Candidate
-import org.apache.ibatis.annotations.Insert
-import org.apache.ibatis.annotations.Mapper
-import org.apache.ibatis.annotations.Options
+import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 
-@Mapper
 @Repository
-interface CandidateMapperRepository {
-    @Insert(
-        "INSERT INTO recruitment.candidates \n" +
-                "(first_name, last_name, email, phone, address, city, state, country, postal_code, university, academic_degree, work_experience, skills) \n" +
-                "VALUES \n" +
-                "(#{firstName},#{lastName},#{email},#{phone},#{address},#{city},#{state},#{country},#{postalCode},#{university},#{academicDegree},#{workExperience},#{skills})"
-    )
-    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
-    fun create(candidate: com.recruit.matcher.api.persistance.candidate.entity.Candidate)
+interface CandidateMapperRepository : MongoRepository<Candidate, String> {
 }

@@ -8,15 +8,15 @@ import org.mapstruct.factory.Mappers
 
 @Mapper(
     componentModel = "spring",
-    uses = [com.recruit.matcher.api.controller.recruiter.dto.request.RecruiterRequestJson::class, com.recruit.matcher.api.controller.recruiter.dto.response.RecruiterResponseJson::class, com.recruit.matcher.api.persistance.recruiter.entity.Recruiter::class]
+    uses = [RecruiterRequestJson::class, RecruiterResponseJson::class, Recruiter::class]
 )
 interface RecruiterMapper {
 
     companion object {
-        val INSTANCE: com.recruit.matcher.api.service.recruiter.mapper.RecruiterMapper = Mappers.getMapper(com.recruit.matcher.api.service.recruiter.mapper.RecruiterMapper::class.java)
+        val INSTANCE: RecruiterMapper = Mappers.getMapper(RecruiterMapper::class.java)
     }
 
-    fun recruiterToRecruiterResponseJson(entity: com.recruit.matcher.api.persistance.recruiter.entity.Recruiter): com.recruit.matcher.api.controller.recruiter.dto.response.RecruiterResponseJson
-    fun recruiterRequestJsonToRecruiter(json: com.recruit.matcher.api.controller.recruiter.dto.request.RecruiterRequestJson): com.recruit.matcher.api.persistance.recruiter.entity.Recruiter
+    fun recruiterToRecruiterResponseJson(entity: Recruiter): RecruiterResponseJson
+    fun recruiterRequestJsonToRecruiter(json: RecruiterRequestJson): Recruiter
 
 }

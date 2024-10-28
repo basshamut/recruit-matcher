@@ -4,6 +4,6 @@ import com.recruit.matcher.api.controller.recruiter.dto.request.RecruiterRequest
 import com.recruit.matcher.api.controller.recruiter.dto.response.RecruiterResponseJson
 
 interface RecruiterService {
-    fun findAll(): List<com.recruit.matcher.api.controller.recruiter.dto.response.RecruiterResponseJson>
-    fun create(recruiter: com.recruit.matcher.api.controller.recruiter.dto.request.RecruiterRequestJson): com.recruit.matcher.api.controller.recruiter.dto.response.RecruiterResponseJson
+    fun findAll(): List<RecruiterResponseJson>
+    fun create(recruiter: RecruiterRequestJson): RecruiterResponseJson
 }

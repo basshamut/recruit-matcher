@@ -15,19 +15,19 @@ import org.springframework.web.bind.annotation.*
 class RecruiterController {
 
     @Autowired
-    private lateinit var recruiterService: com.recruit.matcher.api.service.recruiter.RecruiterService
+    private lateinit var recruiterService: RecruiterService
 
     @GetMapping("/recruiters")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    fun retrieveAll(): ResponseEntity<List<com.recruit.matcher.api.controller.recruiter.dto.response.RecruiterResponseJson>> {
-        val dtoList: List<com.recruit.matcher.api.controller.recruiter.dto.response.RecruiterResponseJson> = recruiterService.findAll()
+    fun retrieveAll(): ResponseEntity<List<RecruiterResponseJson>> {
+        val dtoList: List<RecruiterResponseJson> = recruiterService.findAll()
         return ResponseEntity.ok().body(dtoList)
     }
 
     @PostMapping("/recruiters")
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@Valid @RequestBody recruiter: com.recruit.matcher.api.controller.recruiter.dto.request.RecruiterRequestJson): ResponseEntity<com.recruit.matcher.api.controller.recruiter.dto.response.RecruiterResponseJson> {
-        val dto: com.recruit.matcher.api.controller.recruiter.dto.response.RecruiterResponseJson = recruiterService.create(recruiter)
+    fun create(@Valid @RequestBody recruiter: RecruiterRequestJson): ResponseEntity<RecruiterResponseJson> {
+        val dto = recruiterService.create(recruiter)
         return ResponseEntity.ok().body(dto)
     }
 }

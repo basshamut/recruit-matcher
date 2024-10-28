@@ -7,10 +7,9 @@ Swagger (Local) -> http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api
 Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
 
 ```env
-PROFILE_ACTIVE=h2
-DB_URL=jdbc:h2:mem:demo_db;MODE=PostgreSQL
-DB_USER=root
-DB_PASSWORD=12345
+PROFILE_ACTIVE=[PERFIL ACTIVO local|test|dev|pre|pro]
+MONGODB_URL=[URL PARA DB DE LOCAL/DEV/PRE/PRO]
+MONGODB_TEST_URL=[URL PARA DB DE PRUEBAS]
 ```
-Con esto ya puedes ejecutar la aplicación con el 
-perfil `h2` y la base de datos en memoria H2.
+
+Con esto ya puedes ejecutar la aplicación con el perfil asignado apuntando a la base de datos correspondiente.

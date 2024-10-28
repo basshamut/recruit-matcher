@@ -5,7 +5,7 @@ spring:
     location: classpath:banner.txt
   data:
     mongodb:
-      uri: ${MONGODB_URL}
+      uri: ${MONGODB_TEST_URL}
       auto-index-creation: true
       default-class: null
   web:

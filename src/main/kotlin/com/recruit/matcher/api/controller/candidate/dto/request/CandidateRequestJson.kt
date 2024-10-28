@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Pattern
 
 
 data class CandidateRequestJson(
-    var id: Int = 0,
     var firstName: String = "",
     var lastName: String = "",
     @field:Email(message = "Email should be valid")

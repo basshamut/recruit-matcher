@@ -9,23 +9,23 @@ import com.recruit.matcher.api.service.recruiter.mapper.RecruiterMapper
 import org.springframework.stereotype.Service
 
 @Service
-class RecruiterServiceImpl : com.recruit.matcher.api.service.recruiter.RecruiterService {
+class RecruiterServiceImpl : RecruiterService {
 
-    private lateinit var recruiterMapperRepository: com.recruit.matcher.api.persistance.recruiter.repository.RecruiterMapperRepository
+    private lateinit var recruiterMapperRepository: RecruiterMapperRepository
 
-    constructor(recruiterMapperRepository: com.recruit.matcher.api.persistance.recruiter.repository.RecruiterMapperRepository) {
+    constructor(recruiterMapperRepository: RecruiterMapperRepository) {
         this.recruiterMapperRepository = recruiterMapperRepository
     }
 
-    override fun findAll(): List<com.recruit.matcher.api.controller.recruiter.dto.response.RecruiterResponseJson> {
+    override fun findAll(): List<RecruiterResponseJson> {
         val recruiterList = recruiterMapperRepository.findAll()
-        val recruiterMapped = recruiterList.map { recruiter: com.recruit.matcher.api.persistance.recruiter.entity.Recruiter -> com.recruit.matcher.api.service.recruiter.mapper.RecruiterMapper.INSTANCE.recruiterToRecruiterResponseJson(recruiter) }
+        val recruiterMapped = recruiterList.map { recruiter: Recruiter -> RecruiterMapper.INSTANCE.recruiterToRecruiterResponseJson(recruiter) }
         return recruiterMapped
     }
 
-    override fun create(recruiter: com.recruit.matcher.api.controller.recruiter.dto.request.RecruiterRequestJson): com.recruit.matcher.api.controller.recruiter.dto.response.RecruiterResponseJson {
-        val recruiterMapped = com.recruit.matcher.api.service.recruiter.mapper.RecruiterMapper.INSTANCE.recruiterRequestJsonToRecruiter(recruiter)
-        recruiterMapperRepository.create(recruiterMapped)
-        return com.recruit.matcher.api.service.recruiter.mapper.RecruiterMapper.INSTANCE.recruiterToRecruiterResponseJson(recruiterMapped)
+    override fun create(recruiter: RecruiterRequestJson): RecruiterResponseJson {
+        val recruiterMapped = RecruiterMapper.INSTANCE.recruiterRequestJsonToRecruiter(recruiter)
+        val newRecruiter = recruiterMapperRepository.save(recruiterMapped)
+        return RecruiterMapper.INSTANCE.recruiterToRecruiterResponseJson(newRecruiter)
     }
 }

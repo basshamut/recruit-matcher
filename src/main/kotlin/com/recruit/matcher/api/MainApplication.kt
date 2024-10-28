@@ -1,18 +1,19 @@
 package com.recruit.matcher.api
 
-import org.mybatis.spring.annotation.MapperScan
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
 import org.springframework.transaction.annotation.EnableTransactionManagement
 
 @SpringBootApplication
 @EnableTransactionManagement
-@MapperScan(
-    basePackages = ["com.recruit.matcher.api.persistance"],
-    annotationClass = org.apache.ibatis.annotations.Mapper::class
-)
+@EnableMongoRepositories(basePackages = [
+    "com.recruit.matcher.api.persistance.recruiter.repository",
+    "com.recruit.matcher.api.persistance.candidate.repository",
+    "com.recruit.matcher.api.persistance.project.repository"
+])
 class MainApplication
 
 fun main(args: Array<String>) {
-    runApplication<com.recruit.matcher.api.MainApplication>(*args)
+    runApplication<MainApplication>(*args)
 }
